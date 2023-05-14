@@ -2,7 +2,7 @@ import React from 'react'
 
 const NavBar = () => {
   return (
-    <div className='flex justify-between bg-blue-300 px-10'>
+    <div className='flex shadow-xl justify-between bg-blue-300 px-10 h-[5vh]'>
         <div className='flex'>
             <a href='/' className='text-2xl font-bold text-white'>Sky Hopper</a>
         </div>

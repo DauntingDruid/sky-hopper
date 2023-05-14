@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '../components/navBar'
+import SearchBar from '../components/searchBar'
 
 const HomePage = () => {
 
@@ -7,15 +8,13 @@ const HomePage = () => {
     <div className='flex-row h-screen'>
         <NavBar />
         {/* Search section */}
-        <div className='w-screen bg-slate-200 h-1/6'>
-            Search section
-        </div>
+        <SearchBar />
         {/* middle section */}
-        <div className='w-screen bg-slate-500 h-4/6'>
+        <div className='w-screen bg-slate-500 h-[50vh]'>
             middle section
         </div>
         {/* footer */}
-        <div className="w-screen bg-slate-800 h-24">
+        <div className="w-screen bg-slate-800 h-[10vh]">
             footer
         </div>
     </div>
