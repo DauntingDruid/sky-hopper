@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from '../components/navBar'
-import SearchBar from '../components/searchBar'
+import HeroCard from '../components/heroCard'
 
 const HomePage = () => {
 
@@ -8,15 +8,13 @@ const HomePage = () => {
     <div className='flex-row h-screen'>
         <NavBar />
         {/* Search section */}
-        <SearchBar />
-        {/* middle section */}
-        <div className='w-screen bg-slate-500 h-[50vh]'>
-            middle section
+        <HeroCard />
+        {/* <div className='w-screen bg-slate-500 h-[50vh] opacity-25'>
+            middle
         </div>
-        {/* footer */}
-        <div className="w-screen bg-slate-800 h-[10vh]">
+        <div className="w-screen bg-slate-800 h-[10vh] opacity-25">
             footer
-        </div>
+        </div> */}
     </div>
   )
 }
