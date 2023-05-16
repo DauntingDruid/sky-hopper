@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div className='flex shadow-xl justify-between bg-white px-10 h-[5vh]'>
@@ -8,8 +8,8 @@ const NavBar = () => {
         </div>
         <div className='flex space-x-5 ml-10 justify-center items-center'>
             {/* T0D0 LINK to registeration page -> pass specific data eg reg/log to open register/login card */}
-            <a href='#' className='hover:scale-110 transition-all ease-in-out duration-300 underline'>Sign up</a>
-            <a href='#' className='hover:scale-110 transition-all ease-in-out duration-300'>Login</a>
+            <Link className='hover:scale-110 transition-all ease-in-out duration-300 underline' to={'/signUpLogin'}>Sign up</Link>
+            <Link className='hover:scale-110 transition-all ease-in-out duration-300' to={'/signUpLogin'}>Login</Link>
         </div>
     </div>
   )
