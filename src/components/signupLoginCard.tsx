@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useLottie } from "lottie-react";
+import aeroplane from '../../public/assets/flight-around-globe.json';
 
 const SignupLoginCard = ({userType:string}) => {
   // useState for login or sign up
@@ -8,12 +10,20 @@ const SignupLoginCard = ({userType:string}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rPassword, setrPassword] = useState('');
+  
+  const planeOptions = {
+    animationData: aeroplane,
+    loop: true,
+  };
 
+  const { View } = useLottie(planeOptions);
 
   return (
-    <div className='flex justify-end items-end h-[90vh]'>
+    <div className='flex h-[95vh] bg-[#62CDFF]'>
       {/* Card */}
-        <div className=' w-1/2 h-full bg-[#62CDFF]'>
+
+        {View}
+        <div className='xs:w-full w-1/2 h-full '>
           {/* Header */}
           <div className='flex flex-col justify-center items-center h-[20%]'>
             <div>
@@ -35,13 +45,13 @@ const SignupLoginCard = ({userType:string}) => {
               <div className='text-2xl mb-5 text-white'>
                 Name
               </div>
-              <input className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="text" name="name" placeholder='Name' />
+              <input className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="text" name="name" placeholder='John Doe' />
             </div>
             <div className='flex w-full h-full flex-col justify-center items-center'>
               <div className='text-2xl mb-5 text-white'>
                 Email
               </div>
-              <input className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="email" name="email" id="email" placeholder='email'/>
+              <input className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="email" name="email" id="email" placeholder='jhondoe@xyz.com'/>
             </div>
             <div className='flex w-full h-full flex-col justify-center items-center'>
               <div className='text-2xl mb-5 text-white'>
