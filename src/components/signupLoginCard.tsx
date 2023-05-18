@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useLottie } from "lottie-react";
 import aeroplane from '../assets/flight-around-globe.json';
+import { Link } from 'react-router-dom';
 
 
-const SignupLoginCard = ({userType:string}) => {
+const SignupLoginCard = ({userType,selectedOption}) => {
   // useState for login or sign up
   // useState for client or admin
-  const [isLogin, setIsLogin] = useState(true);
+  console.log("selectedOption",selectedOption)
+  const [isLogin, setIsLogin] = useState(selectedOption.login);
   const [isClient, setIsClient] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,17 +29,18 @@ const SignupLoginCard = ({userType:string}) => {
   };
   const { View } = useLottie(planeOptions);
 
-  const handleLogin = () => {
+  const handleLoginSignup = () => {
     setIsLogin(!isLogin);
-  }
-  const handleSignup = () => {
-    setIsLogin(false);
   }
   const handleClient = () => {
     setIsClient(!isClient)
   }
-  const handleAdmin = () => {
-    setIsClient(false);
+
+  const handleAdminLogin = () => {
+    // check if admin is in db
+    // if yes -> login
+    // if no -> error
+    // T0D0: let user login as this is demo
   }
 
   if(isLogin){
@@ -46,7 +49,7 @@ const SignupLoginCard = ({userType:string}) => {
 
 
   useEffect(() => {
-   
+    console.log("run")
     if (isLogin) {
       setButtonText('Sign up');
       setButtonText2('Login');
@@ -56,19 +59,22 @@ const SignupLoginCard = ({userType:string}) => {
       setButtonText2('Sign up');
       setIsHidden(false);
     }
-
     if(isClient){
-      setIsHidden2(true)
-      
+      setIsHidden2(true) 
     }else{
       setIsLogin(false)
       setIsHidden2(false)
     }
-    
-    
-  
-
+    clearData();
   }, [isClient, isLogin]);
+
+  const clearData = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setrPassword('');
+  }
+
 
   return (<>
     <div className='flex h-[95vh] bg-[#62CDFF]'>
@@ -103,25 +109,25 @@ const SignupLoginCard = ({userType:string}) => {
               <div className='text-2xl mb-5 text-white'>
                 Name
               </div>
-              <input className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="text" name="name" placeholder='John Doe' />
+              <input onChange={(e) => setName(e.target.value)} value={name} className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="text" name="name" placeholder='John Doe' />
             </div>:<></> }
             <div className='flex w-full h-full flex-col justify-center items-center'>
               <div className='text-2xl mb-5 text-white'>
                 Email
               </div>
-              <input className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="email" name="email" id="email" placeholder='jhondoe@xyz.com'/>
+              <input onChange={(e) => setEmail(e.target.value)} value={email} className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="email" name="email" id="email" placeholder='jhondoe@xyz.com'/>
             </div>
             <div className='flex w-full h-full flex-col justify-center items-center'>
               <div className='text-2xl mb-5 text-white'>
                 Password
               </div>
-              <input className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="password" name="password" id="password" placeholder='**********'/>
+              <input onChange={(e) => setPassword(e.target.value)} value={password} className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="password" name="password" id="password" placeholder='**********'/>
             </div>
             {isHidden?<div className='flex w-full h-full flex-col justify-center items-center'>
               <div className='text-2xl mb-5 text-white'>
                 Repeat Password
               </div>
-              <input className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="password" name="rPassword" id="rPassword" placeholder='***********'/>
+              <input onChange={(e) => setrPassword(e.target.value)} value={rPassword} className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="password" name="rPassword" id="rPassword" placeholder='***********'/>
             </div>:<></> }            
           </div>
           <div className='flex px-16'>
@@ -129,8 +135,11 @@ const SignupLoginCard = ({userType:string}) => {
               <div className=' cursor-pointer text-xl text-blue-700'>{buttonText}</div>
             </div>
             {isHidden2?<div className='flex flexrow ml-6 justify-center items-center'>
-              <div className=' text-white text-center font-bold'>Already have an account?</div><div onClick={() => handleLogin()} className='ml-2 hover:text-blue-500 active:scale-90 transition-all ease-in-out duration-50 cursor-pointer text-white text-center font-bold underline underline-offset-2'>{buttonText2}</div>
-            </div>:<></>}
+              <div className=' text-white text-center font-bold'>Already have an account?</div><div onClick={() => handleLoginSignup()} className='ml-2 hover:text-blue-500 active:scale-90 transition-all ease-in-out duration-50 cursor-pointer text-white text-center font-bold underline animate-pulse underline-offset-2'>{buttonText2}</div></div>
+              :
+            <div className='flex flexrow ml-6 justify-center items-center'>
+            <div className=' text-white text-center font-bold'>Continue as</div><div onClick={() => handleAdminLogin()} className='ml-2 hover:text-blue-500 active:scale-90 transition-all ease-in-out duration-50 cursor-pointer text-white text-center font-bold underline animate-pulse underline-offset-2'>
+            <Link className='hover:scale-110 transition-all ease-in-out duration-300' to={{pathname:'/admin'}}>Guest</Link></div></div>}
           </div>
         </div>
         
