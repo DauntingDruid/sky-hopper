@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useLottie } from "lottie-react";
 import aeroplane from '../assets/flight-around-globe.json';
 import { Link } from 'react-router-dom';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../utils/firebase';
 
 
 const SignupLoginCard = ({userType,selectedOption}) => {
@@ -20,7 +22,17 @@ const SignupLoginCard = ({userType,selectedOption}) => {
   const [buttonText, setButtonText] = useState('Sign up');
   const [buttonText2, setButtonText2] = useState('Login');
 
-
+  const googleProvider = new GoogleAuthProvider();
+  const handleGoogleLogin =  async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      console.log("LOGGED USER : ",user)
+      
+    } catch (error) {
+      console.log("ERROR LOGGING : ",error)
+    }
+  }
 
 
   const planeOptions = {
@@ -94,7 +106,7 @@ const SignupLoginCard = ({userType,selectedOption}) => {
               <div className='text-3xl text-white text-center font-bold'>Hello!</div>
               <div className='text-3xl text-white text-center font-bold'>We are glad to see you :)</div>
             </div>
-           {isHidden2?<div className='cursor-pointer flex justify-center items-center px-1 w-2/3 h-12 mt-4 rounded-full border-solid border-[1px] bg-[#5F9DF7] hover:bg-[#2f81fd] border-[#C9EEFF] transition-all duration-200 ease-linear active:scale-90'>
+           {isHidden2?<div onClick={handleGoogleLogin} className='cursor-pointer flex justify-center items-center px-1 w-2/3 h-12 mt-4 rounded-full border-solid border-[1px] bg-[#5F9DF7] hover:bg-[#2f81fd] border-[#C9EEFF] transition-all duration-200 ease-linear active:scale-90'>
               <img className='w-8 h-8 mr-5' src='https://img.icons8.com/color/48/000000/google-logo.png' alt='google logo' />
               <div className=' cursor-pointer text-xl text-blue-700'>{buttonText} with Google</div>
             </div>:<></>}
