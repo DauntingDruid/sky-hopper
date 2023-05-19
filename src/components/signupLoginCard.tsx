@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useLottie } from "lottie-react";
 import aeroplane from '../assets/flight-around-globe.json';
 import { Link } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
-
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignupLoginCard = ({userType,selectedOption}) => {
   // useState for login or sign up
@@ -18,22 +20,65 @@ const SignupLoginCard = ({userType,selectedOption}) => {
   const [rPassword, setrPassword] = useState('');
   const [isHidden , setIsHidden] = useState(true);
   const [isHidden2 , setIsHidden2] = useState(true);
-
+  const [signed, setSigned] = useState(false);
   const [buttonText, setButtonText] = useState('Sign up');
   const [buttonText2, setButtonText2] = useState('Login');
-
+  const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
-  const handleGoogleLogin =  async () => {
+  
+  const handleGoogleSignUpLogin =  async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       console.log("LOGGED USER : ",user)
-      
+      navigate("/");
+      toast('Logged in!', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     } catch (error) {
       console.log("ERROR LOGGING : ",error)
     }
   }
 
+  const handleLoginWithEmailPassword = async (email, password) => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password) ;
+      const user = result.user;
+      console.log("LOGGED USER : ",user)
+      navigate("/");
+      toast('Logged in!', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });      
+    } catch (error) {
+      console.log("ERROR LOGGING : ",error)
+    }
+  }
+
+  const handleSignUpWithLoginPassword = async (email, password) => {
+    try {
+      const result = await createUserWithEmailAndPassword(auth, email, password) ;
+      const user = result.user;
+      console.log("LOGGED USER : ",user)
+      setIsLogin(false)
+      setSigned(true)
+    } catch (error) {
+      console.log("ERROR LOGGING : ",error)
+    }
+  }
 
   const planeOptions = {
     animationData: aeroplane,
@@ -66,10 +111,11 @@ const SignupLoginCard = ({userType,selectedOption}) => {
       setButtonText('Sign up');
       setButtonText2('Login');
       setIsHidden(true);
+      setSigned(false)
     } else {
       setButtonText('Login');
       setButtonText2('Sign up');
-      setIsHidden(false);
+      setIsHidden(false); 
     }
     if(isClient){
       setIsHidden2(true) 
@@ -103,10 +149,10 @@ const SignupLoginCard = ({userType,selectedOption}) => {
           </div>
           <div className='flex flex-col justify-center items-center h-[20%]'>
             <div>
-              <div className='text-3xl text-white text-center font-bold'>Hello!</div>
-              <div className='text-3xl text-white text-center font-bold'>We are glad to see you :)</div>
+              <div className='text-3xl text-white text-center font-bold'>{signed?``:`Hello!`}</div>
+              <div className='text-3xl text-white text-center font-bold'>{signed?`Signed up successfully! Please login`:`We are glad to see you :)`}  </div>
             </div>
-           {isHidden2?<div onClick={handleGoogleLogin} className='cursor-pointer flex justify-center items-center px-1 w-2/3 h-12 mt-4 rounded-full border-solid border-[1px] bg-[#5F9DF7] hover:bg-[#2f81fd] border-[#C9EEFF] transition-all duration-200 ease-linear active:scale-90'>
+           {isHidden2?<div onClick={handleGoogleSignUpLogin} className='cursor-pointer flex justify-center items-center px-1 w-2/3 h-12 mt-4 rounded-full border-solid border-[1px] bg-[#5F9DF7] hover:bg-[#2f81fd] border-[#C9EEFF] transition-all duration-200 ease-linear active:scale-90'>
               <img className='w-8 h-8 mr-5' src='https://img.icons8.com/color/48/000000/google-logo.png' alt='google logo' />
               <div className=' cursor-pointer text-xl text-blue-700'>{buttonText} with Google</div>
             </div>:<></>}
@@ -142,7 +188,7 @@ const SignupLoginCard = ({userType,selectedOption}) => {
               <input onChange={(e) => setrPassword(e.target.value)} value={rPassword} className='bg-[#62CDFF] hover:scale-105 transition-all duration-200 ease-linear focus:transition-all focus:duration-200 focus:ease-linear focus:outline-blue-500 w-2/3 px-8 placeholder:text-white placeholder:text-opacity-50  h-16 text-white text-xl rounded-full border-solid border-2 border-[#C9EEFF]' type="password" name="rPassword" id="rPassword" placeholder='***********'/>
             </div>:<></> }            
           </div>
-          <div className='flex px-16'>
+          <div onClick={() => isLogin?handleSignUpWithLoginPassword(email,password):handleLoginWithEmailPassword(email,password)} className='flex px-16'>
             <div className='cursor-pointer ml-10 flex justify-center items-center px-2 w-1/3 h-12 rounded-full border-solid border-[1px] bg-[#5F9DF7] hover:bg-[#2f81fd] border-[#C9EEFF] transition-all duration-200 ease-linear'>
               <div className=' cursor-pointer text-xl text-blue-700'>{buttonText}</div>
             </div>
@@ -154,7 +200,6 @@ const SignupLoginCard = ({userType,selectedOption}) => {
             <Link className='hover:scale-110 transition-all ease-in-out duration-300' to={{pathname:'/admin'}}>Guest</Link></div></div>}
           </div>
         </div>
-        
         {/* login info -> username, password */}
         {/* toggle */}
     </div></>
