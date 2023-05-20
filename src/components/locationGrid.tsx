@@ -8,6 +8,7 @@ const LocationGrid = () => {
                 <div className="hover:animate-pulse bg-center h-8 w-8 bg-cover bg-no-repeat bg-[url('img/travel.png')] mr-2" />
                 <div className='text-2xl cursor-default '>Popular Destinations</div>
             </div>            
+            {/* Cards Grid */}
             <div className="w-screen h-[60vh] grid grid-rows-5 grid-flow-col grid-cols-4 gap-4 px-12">
 
                 <a href='#' className="flex text-lg hover:text-2xl hover:scale-105 transition-all duration-500 justify-center items-end bg-gray-500 bg-blend-overlay hover:bg-blend-normal rounded-xl row-span-5 bg-center bg-cover bg-no-repeat bg-[url('img/berlin.jpg')]">

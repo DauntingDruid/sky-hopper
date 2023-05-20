@@ -9,7 +9,6 @@ const RegisterationPage = () => {
   // get the state from the link in navbar 
   let { state } = useLocation();
 
-  // sign up info for admin or client 
   return (
     <div className='flex-row justify-between w-screen h-screen'>
       <NavBar />
