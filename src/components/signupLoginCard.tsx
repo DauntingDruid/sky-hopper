@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLottie } from "lottie-react";
-import aeroplane from "../assets/flight-around-globe.json";
+import aeroplane from "../assets/lottie/flight-around-globe.json";
 import { Link } from "react-router-dom";
 import {
   GoogleAuthProvider,
@@ -12,6 +12,8 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from 'react-redux'
+import { storeData } from '../store/slices/authSlice'
 
 const SignupLoginCard = ({ userType, selectedOption }) => {
   // console.log("selectedOption",selectedOption)
@@ -28,12 +30,16 @@ const SignupLoginCard = ({ userType, selectedOption }) => {
   const [buttonText2, setButtonText2] = useState("Login");
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
+  const dispatch = useDispatch()
 
   const handleGoogleSignUpLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
       const user = result.user;
-      // console.log("LOGGED USER : ",user)
+      console.log("LOGGED USER:", JSON.parse(JSON.stringify(user.providerData[0])), token);
+      dispatch(storeData(JSON.parse(JSON.stringify(user.providerData[0]))))
       navigate("/");
       toast("Logged in!", {
         position: "bottom-center",
