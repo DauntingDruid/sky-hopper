@@ -14,7 +14,6 @@ const NavBar = () => {
   }
 
   useEffect(() => { 
-    console.log('useEffect')
     if(userInfo === '' && userToken === '' ){
       console.log("empty")
     }else{
