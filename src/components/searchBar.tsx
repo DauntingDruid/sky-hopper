@@ -68,13 +68,13 @@ const SearchBar = () => {
             <Combobox value={fromAirport} onChange={(e) => setFromAirport(e)}>
               <Combobox.Input  
                 placeholder="Delhi International Airport (DEL)"
-                className="w-[27.5%] font-bold h-full p-4 rounded-l-xl border-r-2 border-gray-200  "
+                className="w-[27.5%] rounded-bl-xl font-bold h-full p-4 border-r-2 border-gray-200  "
                 onChange={(event) => setQuery(event.target.value)}
               />
               <Combobox.Options className="w-36 absolute z-0 ">
                 {fromFilteredAirports.map((airport, index) => (
                   <Combobox.Option
-                    className="w-full p-2 h-full border-solid border-2 rounded-xl bg-white border-gray-300 "
+                    className="w-full p-2 h-full border-solid border-2 bg-white border-gray-300 "
                     key={index}
                     value={airport?.gps_code}
                   >
@@ -105,7 +105,7 @@ const SearchBar = () => {
             {/* departure -> calendar */}
             <div className="w-[15%] flex justify-center items-center h-full p-4 border-r-2 bg-white border-gray-200">
               <DatePicker
-                className="w-full font-bold"
+                className="w-full h-full font-bold"
                 selected={fromDate}
                 onChange={(date) => setFromDate(date)}
               />
@@ -113,7 +113,7 @@ const SearchBar = () => {
             {/* Return -> calendar */}
             <div className="w-[15%] flex justify-center items-center h-full p-4 border-r-2 bg-white border-gray-200">
               <DatePicker
-                className="w-full font-bold"
+                className="w-full h-full font-bold"
                 selected={toDate}
                 onChange={(date) => setToDate(date)}
               />
@@ -135,7 +135,7 @@ const SearchBar = () => {
             </div>
           </div>
         </div>
-        <div className="w-[10%] flex justify-center items-center bg-blue-500 hover:bg-blue-600 transition-opacity ease-linear duration-200 rounded-r-lg active:bg-blue-700">
+        <div className="w-[10%] flex justify-center items-center bg-blue-500 hover:bg-blue-600 transition-all ease-linear duration-300 rounded-r-lg active:bg-blue-700 active:scale-95">
           <button className="w-full h-full text-white font-bold">Search</button>
         </div>
     </div>

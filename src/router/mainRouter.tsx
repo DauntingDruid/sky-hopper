@@ -3,6 +3,9 @@ import HomePage from '../pages/homePage';
 import RegisterationPage from '../pages/registerationPage';
 import React from 'react'
 import AdminDashboardPage from '../pages/adminDashboardPage';
+import BookingPage from '../pages/bookingPage';
+import FlightsPage from '../pages/flightsPage';
+import BookingConfirmationPage from '../pages/bookingConfirmationPage';
 
 //useLocation hook data: login,
 
@@ -11,6 +14,9 @@ const MainRouter = () => {
     <Router>
         <Routes>
             <Route path='/' Component={HomePage} />
+            <Route path='/search' Component={FlightsPage} />
+            <Route path='/search' Component={BookingPage} />
+            <Route path='/search' Component={BookingConfirmationPage} />
             <Route path='/signUpLogin' Component={RegisterationPage} />
             <Route path='/admin' Component={AdminDashboardPage} />
         </Routes>
