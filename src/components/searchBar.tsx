@@ -3,8 +3,9 @@ import airport from "../data/airports.json";
 import { Combobox } from "@headlessui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
+  const navigate = useNavigate();
   const [airports, setAirports] = useState(airport);
   const [fromAirport, setFromAirport] = useState("");
   const [toAirport, setToAirport] = useState("");
@@ -23,7 +24,7 @@ const SearchBar = () => {
   ]);
   const [fromDate, setFromDate] = useState(new Date());
   const [toDate, setToDate] = useState(new Date());
-
+  
   const handleFromAirportChange = (event) => {
     // api call to autocomplete airport
 
@@ -42,6 +43,10 @@ const SearchBar = () => {
 
   const handlePassengersChange = (event) => {
 
+  };
+
+  const handleSearchFlight = () => {
+    navigate("/search");
   };
 
   return (
@@ -71,7 +76,7 @@ const SearchBar = () => {
                 className="w-[27.5%] rounded-bl-xl font-bold h-full p-4 border-r-2 border-gray-200  "
                 onChange={(event) => setQuery(event.target.value)}
               />
-              <Combobox.Options className="w-36 absolute z-0 ">
+              <Combobox.Options className="mt-16 w-56 absolute z-10 ">
                 {fromFilteredAirports.map((airport, index) => (
                   <Combobox.Option
                     className="w-full p-2 h-full border-solid border-2 bg-white border-gray-300 "
@@ -90,7 +95,7 @@ const SearchBar = () => {
                 className="w-[27.5%] font-bold h-full p-4 border-r-2 border-gray-200  "
                 onChange={(event) => setQuery(event.target.value)}
               />
-              <Combobox.Options className=" w-36 absolute z-0 ">
+              <Combobox.Options className="mt-16 w-56 absolute z-10 ">
                 {toFilteredAirports.map((airport, index) => (
                   <Combobox.Option
                     className="w-full p-2 h-full border-solid border-2 rounded-xl bg-white border-gray-300 "
@@ -135,7 +140,7 @@ const SearchBar = () => {
             </div>
           </div>
         </div>
-        <div className="w-[10%] flex justify-center items-center bg-blue-500 hover:bg-blue-600 transition-all ease-linear duration-300 rounded-r-lg active:bg-blue-700 active:scale-95">
+        <div onClick={()=> handleSearchFlight()} className="w-[10%] flex justify-center items-center bg-blue-500 hover:bg-blue-600 transition-all ease-linear duration-300 rounded-r-lg active:bg-blue-700 active:scale-95">
           <button className="w-full h-full text-white font-bold">Search</button>
         </div>
     </div>
