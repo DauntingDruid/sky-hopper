@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify'
 const HomePage = () => {
 
   return (
-    <div className=''>
+    <div className='flex flex-col min-h-screen'>
         {/* nav section */}
         <NavBar />
         {/* Search section */}

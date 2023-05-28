@@ -15,7 +15,7 @@ const MainRouter = () => {
         <Routes>
             <Route path='/' Component={HomePage} />
             <Route path='/search' Component={FlightsPage} />
-            <Route path='/booking' Component={BookingPage} />
+            <Route path='/book/:id' Component={BookingPage} />
             <Route path='/confirmation' Component={BookingConfirmationPage} />
             <Route path='/signUpLogin' Component={RegisterationPage} />
             <Route path='/admin' Component={AdminDashboardPage} />
