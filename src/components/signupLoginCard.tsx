@@ -31,6 +31,12 @@ const SignupLoginCard = ({ userType, selectedOption }) => {
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
   const dispatch = useDispatch()
+  const planeOptions = {
+    animationData: aeroplane,
+    loop: true,
+  };
+  const { View } = useLottie(planeOptions);
+
 
   const handleGoogleSignUpLogin = async () => {
     try {
@@ -93,12 +99,6 @@ const SignupLoginCard = ({ userType, selectedOption }) => {
     }
   };
 
-  const planeOptions = {
-    animationData: aeroplane,
-    loop: true,
-  };
-  const { View } = useLottie(planeOptions);
-
   const handleLoginSignup = () => {
     setIsLogin(!isLogin);
   };
@@ -111,6 +111,14 @@ const SignupLoginCard = ({ userType, selectedOption }) => {
     // if yes -> login
     // if no -> error
     // T0D0: let user login as this is demo
+  };
+
+
+  const clearData = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    setrPassword("");
   };
 
   useEffect(() => {
@@ -133,14 +141,7 @@ const SignupLoginCard = ({ userType, selectedOption }) => {
     }
     clearData();
   }, [isClient, isLogin]);
-
-  const clearData = () => {
-    setName("");
-    setEmail("");
-    setPassword("");
-    setrPassword("");
-  };
-
+  
   return (
     <>
       <div className="flex h-[95vh] bg-[#62CDFF]">
