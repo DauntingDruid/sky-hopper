@@ -17,35 +17,35 @@ function PopularDestinationCard({ places }) {
       });
       return updatedPlaces;
     };
-  
+
     useEffect(() => {
       if (places.length <= 3) {
         setGridRows(5);
       } else if (places.length <= 6) {
-        setGridRows(10);
+        setGridRows(5);
       } else if (places.length <= 9) {
-        setGridRows(15);
+        setGridRows(10);
       } else if (places.length <= 12) {
-        setGridRows(20);
+        setGridRows(10);
       } else if (places.length <= 15) {
-        setGridRows(25);
+        setGridRows(15);
       } else if (places.length <= 18) {
-        setGridRows(30);
+        setGridRows(15);
       }
-  
+
       const updatedPlaces = addRowSpanValues(places, rowSpanValues);
       setPlacesArray(updatedPlaces);
     //   console.log(updatedPlaces);
     }, [places]);
 
   return (
-    <div className={`w-screen h-full grid grid-rows-${gridRows} grid-cols-4 grid-flow-row gap-4 px-8`} >
+    <div style={{ gridTemplateRows: `repeat(${gridRows}, 1fr)` }} className={`w-screen h-full grid grid-cols-4 grid-flow-row gap-4 px-8`} >
       {placesArray.map((place, index) => (
         <a
           key={index}
           href="#"
           className={`flex text-lg hover:text-2xl hover:scale-105 transition-all duration-500 justify-center items-end bg-gray-500 bg-blend-overlay hover:bg-blend-normal row-span-${place.rowSpan} col-span-1 rounded-xl bg-center bg-cover bg-no-repeat`}
-          style={{ backgroundImage: `url('${place.imageUrl}')` }}
+          style={{ backgroundImage: `url('${place.imageUrl}')`,gridRow: `span ${place.rowSpan}`, }}
         >
           <div className="px-2 bg-gray-200 bg-opacity-70 mb-2 rounded-lg">{place.city}</div>
         </a>
