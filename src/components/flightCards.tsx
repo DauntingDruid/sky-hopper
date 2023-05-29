@@ -1,9 +1,18 @@
 import React from 'react'; 
-    import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { storeFlightData } from '../store/slices/bookFlightSlice';
 
 
 const FlightCards = ({ flights }) => { 
-        const navigate = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const bookFlight = (flightData:any,id:any) => {
+        // console.log(JSON.stringify(flightData))
+        dispatch(storeFlightData(JSON.parse(JSON.stringify(flightData))))
+        navigate(`/book/${id}`);
+    };
     
   return (
     <div className='flex flex-col items-center p-4'>
@@ -30,7 +39,7 @@ const FlightCards = ({ flights }) => {
               <p className='text-xl font-medium'>₹{flight.price}</p>
               <p className='text-sm'>{flight.stops} stops</p>
               <button 
-                 onClick={() => navigate(`/book/${flight.id}`)}
+                 onClick={() => bookFlight(flight,flight.id)}
               className='bg-blue-200 hover:bg-blue-300 rounded-full px-4 py-2 mt-4 transition-all duration-200 ease-linear active:bg-blue-500 active:animate-none'>
                 Book Now
               </button>

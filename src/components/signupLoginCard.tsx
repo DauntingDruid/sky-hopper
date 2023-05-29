@@ -10,9 +10,9 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { storeData } from '../store/slices/authSlice'
 
 const SignupLoginCard = ({ userType, selectedOption }) => {
@@ -141,7 +141,7 @@ const SignupLoginCard = ({ userType, selectedOption }) => {
     }
     clearData();
   }, [isClient, isLogin]);
-  
+
   return (
     <>
       <div className="flex h-[95vh] bg-[#62CDFF]">
