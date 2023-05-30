@@ -1,50 +1,63 @@
-import React from 'react'
-import seatingPlan from '../../public/img/6E_320.png'
+import React, { useState } from 'react'
 import NavBar from '../components/navBar'
 import { useSelector } from 'react-redux'
 import { useLottie } from "lottie-react";
 import aeroplane from '../assets/lottie/134265-airplane.json'
+import flightAttendant from '../assets/lottie/flight-attendant.json'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
-const BookingPage = () => {
+import FlightDetailsCard from '../components/flightDetailsCard';
+import seatingPlan from '../assets/seatMap/seatMap.png';
+import { useNavigate } from "react-router-dom";
+
+const BookingPage = () => {const navigate = useNavigate();
   const flightInfo = useSelector((state:any) => state.flight.flightInfo) 
-  console.log('flightInfo : ', flightInfo)
+  const [seats, setSeats] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+  // console.log('flightInfo : ', flightInfo)
   const planeOptions = {
     animationData: aeroplane,
     loop: false
   };
-  const { View } = useLottie(planeOptions);
+  const attendant = {
+    animationData: flightAttendant,
+    loop: false
+  };
+  const { View :PlaneView } = useLottie(planeOptions);
+  const { View :airplaneAttendant} = useLottie(attendant);
+
+  const confirmBookingHandler = () =>{
+    setTimeout(() => {
+      navigate(`/confirmation/${flightInfo.id}`)  
+    }, 200);
+  }
 
   return (<>
 
       <NavBar />
-
-      <div className='flex justify-center w-screen h-screen scroll'>
-      <div className='absolute w-screen'>       
-              {View}
-      </div>
-        {/* from -animation- to */}
-        <div className='h-[30vh] mt-10 container z-10 rounded-lg bg-white bg-opacity-70 py-5'>
-            <div className='flex items-center px-8 mb-3'>
-              <FontAwesomeIcon icon={faPlaneDeparture} className="mr-2 text-2xl text-blue-300" /> 
-              <p>Flight from <span className='text-xl font-medium'>{flightInfo.departureCity}</span> to <span className='text-xl font-medium'>{flightInfo.arrivalCity}</span></p>
-            </div>
-            <hr />  
+      <div className='absolute w-screen'>{PlaneView}</div>
+      <div className='flex flex-col justify-center items-center w-screen scroll'>
+        <FlightDetailsCard flightInfo={flightInfo} />
+        <div className='z-10 h-24 mt-20 w-full flex justify-center items-center'>
+          <div className='text-6xl font-medium text-gray-600'>Select your seats</div>
+          <div className='w-fit'>{airplaneAttendant}</div>
         </div>
-        {/* Departure -> arrival */}
-
-        {/* cabin seat selection */}
-
-        {/* seats selected -> total price */}
-        {/* confirm */}
-
-        
-
-
-
-
-        {/* <img className='' src={seatingPlan} alt='seating plan'  /> */}
-      
+        {/* cabin seat selection  */}
+        <div className='w-screen h-[50vh] flex flex-col justify-center items-center z-10'>
+          <div className='rotate-90 h-[150vh] w-[50vh] '> 
+            <img className='w-full h-full' src={seatingPlan} alt='seating plan'  />
+          </div>     
+        </div>
+      {/* CARD:  seats selected -> total price -> confirm */}
+        <div className='h-[20vh] bg-gray-500 bg-opacity-20 w-1/5 z-10 rounded-xl shadow-md flex flex-col justify-center items-center mb-5'>
+          <div className='h-2/6 w-full flex justify-around items-center px-5'>
+          <div className=' text-2xl text-gray-700 font-medium cursor-default'>Total Price:</div>
+          <div className=' text-xl text-gray-700 font-medium cursor-default'>{flightInfo.price} x {seats} = {totalPrice} <span>&#8377;</span></div>
+          </div>
+          <div onClick={() => confirmBookingHandler()} className='h-4/6 w-full flex justify-center items-center bg-blue-500 hover:bg-blue-600 transition-all ease-linear duration-100 rounded-b-lg active:bg-blue-700 active:scale-95 '> 
+            <div className="text-xl text-white font-medium cursor-default">Confirm Booking</div>
+          </div>
+        </div>
       </div>
 
     </>
