@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../components/navBar";
 import AdminNavBar from "../components/adminNavBar";
 import DashboardOverview from "../components/dashboardOverview";
 import DashboardCharts from "../components/dashboardCharts";
@@ -73,7 +72,6 @@ const AdminDashboardPage = () => {
   return (
     <div className="flex h-screen flex-col">
       {/* Navigation Bar */}
-      <NavBar />
       <div className="flex flex-row h-[95vh] ">
         {/* Vertical Admin Dashboard Navigater  */}
         <AdminNavBar />

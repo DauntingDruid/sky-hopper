@@ -1,19 +1,22 @@
 import { useLottie } from 'lottie-react';
 import passportLottie from '../assets/lottie/passport.json';
 import React from 'react'
-import NavBar from '../components/navBar';
+import { useNavigate } from "react-router-dom"
 
 const BookingConfirmationPage = () => {
-
+  const navigate = useNavigate()
   const passportAnimation = {
     animationData: passportLottie,
     loop: false
   };
   const { View :passport} = useLottie(passportAnimation);
 
+  const navigateHome = () => {
+    navigate("/")
+  }
+
   return (
     <>
-      <NavBar />
       <div className='flex flex-col justify-between items-center h-screen w-screen'>
         <div className='absolute z-0'>
           {passport}
@@ -24,7 +27,7 @@ const BookingConfirmationPage = () => {
             <p>We can't wait to serve you on board. Bon voyage!</p>
           </div>
           <div className='h-1/3 flex flex-col justify-center items-center xs:px-4 text-4xl text-gray-600 '>
-            <button className='w-fit h-fit p-3 rounded-3xl bg-blue-300 hover:bg-blue-400 active:bg-blue-500 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 '>Continue exploring</button> 
+            <button onClick={() => navigateHome()} className='w-fit h-fit p-3 rounded-3xl bg-blue-300 hover:bg-blue-400 active:bg-blue-500 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 '>Continue exploring</button> 
           </div>
         </div>
       </div>

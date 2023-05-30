@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import NavBar from '../components/navBar'
 import { useSelector } from 'react-redux'
 import { useLottie } from "lottie-react";
 import aeroplane from '../assets/lottie/134265-airplane.json'
@@ -34,7 +33,6 @@ const BookingPage = () => {const navigate = useNavigate();
 
   return (<>
 
-      <NavBar />
       <div className='absolute w-screen'>{PlaneView}</div>
       <div className='flex flex-col justify-center items-center w-screen scroll'>
         <FlightDetailsCard flightInfo={flightInfo} />
