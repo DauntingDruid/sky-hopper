@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import airplane_seat from "../assets/img/airplane_seat.png";
 
-const SeatMap = ({ rows, cols }) => {
+const SeatMap = ({ rows, cols, seatsSelected }) => {
   const [selectedSeats, setSelectedSeats] = useState(Array());
   const [selectedSeatsLength, setSelectedSeatsLength] = useState(0);
   const [divElements, setDivElements] = useState([]);
@@ -19,6 +19,9 @@ const SeatMap = ({ rows, cols }) => {
       newSelectedSeats.push(seat);
       // console.log("added newSelectedSeats : ", newSelectedSeats)
     }
+    //function passed as prop, used for calculating total price 
+    seatsSelected(newSelectedSeats.length)
+    
     setSelectedSeats(newSelectedSeats);
     setSelectedSeatsLength(newSelectedSeats.length);
   };
@@ -64,7 +67,7 @@ const SeatMap = ({ rows, cols }) => {
 
   return (
     <div className="z-20 w-4/5 h-[60vh] flex justify-center items-center">
-      <div className="flex flex-col rounded-l-3xl bg-gray-300 bg-opacity-60 w-11/12 h-2/3 space-y-3">
+      <div className="flex flex-col rounded-l-3xl bg-gray-300 bg-opacity-60 w-11/12 h-4/5 space-y-3">
         <div
           className="w-full h-full grid gap-4 p-2"
           style={{
@@ -88,7 +91,7 @@ const SeatMap = ({ rows, cols }) => {
           })}
         </div>
       </div>
-      <div className="flex flex-col h-2/3 w-1/12 bg-gray-400 bg-opacity-60 rounded-r-3xl">
+      <div className="flex flex-col h-4/5 w-1/12 bg-gray-400 bg-opacity-60 rounded-r-3xl">
         <div
           className="w-full h-full grid gap-4 p-2"
           style={{

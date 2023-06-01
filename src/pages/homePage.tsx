@@ -3,11 +3,20 @@ import HeroCard from '../components/heroCard'
 import Footer from '../components/footer'
 import LocationGrid from '../components/locationGrid'
 import { ToastContainer } from 'react-toastify'
+import {motion} from 'framer-motion'
 
 const HomePage = () => {
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <motion.div
+      initial={{
+        opacity:0
+      }}
+      animate={{
+        opacity:1
+      }}
+      exit={{opacity:0}}
+    className='flex flex-col min-h-screen'>
         {/* nav section */}
         {/* Search section */}
         <HeroCard />
@@ -26,7 +35,7 @@ const HomePage = () => {
           theme="light"
           />
         <Footer />  
-    </div>
+    </motion.div>
   )
 }
 

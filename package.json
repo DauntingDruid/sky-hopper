@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "apexcharts": "^3.40.0",
     "firebase": "^9.22.0",
+    "framer-motion": "^10.12.16",
     "lottie-react": "^2.4.0",
     "papaparse": "^5.4.1",
     "react": "^18.2.0",

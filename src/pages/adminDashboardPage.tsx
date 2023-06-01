@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AdminNavBar from "../components/adminNavBar";
 import DashboardOverview from "../components/dashboardOverview";
 import DashboardCharts from "../components/dashboardCharts";
+import { motion } from "framer-motion";
 
 const AdminDashboardPage = () => {
   const [bookings] = useState("31,200");
@@ -70,7 +71,16 @@ const AdminDashboardPage = () => {
   ]);
 
   return (
-    <div className="flex h-screen flex-col">
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      exit={{ opacity: 0 }}
+      className="flex h-screen flex-col"
+    >
       {/* Navigation Bar */}
       <div className="flex flex-row h-[95vh] ">
         {/* Vertical Admin Dashboard Navigater  */}
@@ -100,7 +110,7 @@ const AdminDashboardPage = () => {
           <div className="mt-8 mx-4">{/* Flight Listing Table */}</div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
