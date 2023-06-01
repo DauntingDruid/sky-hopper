@@ -79,13 +79,15 @@ const LocationGrid = () => {
 //   console.log(places.length,Math.ceil(places.length / 6),60 * Math.ceil(places.length / 6))
 
   return (
-    <div style={{ height: `${viewHeight}vh` }}>
+    <div className="my-5">
       <div className="flex w-full px-12 py-4">
         <div className="hover:animate-pulse bg-center h-8 w-8 bg-cover bg-no-repeat bg-[url('img/travel.png')] mr-2" />
         <div className="text-2xl cursor-default">Popular Destinations</div>
       </div>
-      {/* Cards Grid */}
-      <PopularDestinationCard places={places} />
+      <div style={{ height: `${viewHeight}vh` }}>
+        {/* Cards Grid */}
+        <PopularDestinationCard places={places} />
+      </div>
     </div>
   );
 };
