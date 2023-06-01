@@ -151,11 +151,11 @@ const SignupLoginCard = ({ userType, selectedOption }) => {
         </div>
         <div className="xs:w-full w-2/3 h-full">
           {/* Header */}
-          <div className="flex w-full mt-2 items-center justify-center">
+          <div className="flex w-full mt-5 items-center justify-center">
             {/* toggle client / admin */}
             <div
               onClick={() => handleClient()}
-              className="flex w-40 h-8 justify-between border-solid border-2 rounded-full border-blue-400 bg-[#18b6ff]"
+              className="flex w-52 h-12 justify-between border-solid border-2 rounded-full border-blue-400 bg-[#18b6ff]"
             >
               <div
                 className={

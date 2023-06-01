@@ -20,8 +20,8 @@ const FlightDetailsCard = ({flightInfo}) => {
             <hr />
             <div className='w-full h-[90%] flex items-center px-5 '>
                 {/* flight icon */}
-                <div className=' h-full flex justify-center items-center'>
-                  <img src={flightInfo.logo} alt="flight_logo" />
+                <div className='w-32 h-full flex justify-center items-center'>
+                  <img className='w-full' src={flightInfo.logo} alt="flight_logo" />
                 </div>
                 <div className='w-full h-full justify-around flex items-center'>
                   <div className='w-1/3 flex flex-row justify-center items-center'>
@@ -49,8 +49,6 @@ const FlightDetailsCard = ({flightInfo}) => {
                     </div>
                   </div> 
                 </div>
-                {/* flight date */}
-                {/* flight duration */}
             </div>  
         </div>
   )

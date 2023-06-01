@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartBar, faClipboardList, faPlane, faUser, faCogs } from '@fortawesome/free-solid-svg-icons';
+import skyHopperLogo from '../assets/img/skyhopper_logo.png';
 
 const AdminNavBar = () => {
     const [active, setActive] = useState('Dashboard');
@@ -12,8 +13,8 @@ const AdminNavBar = () => {
   return (
     <div className="w-[15vw] flex flex-col items-center bg-white shadow-lg">
         {/* logo */}
-        <a href='#' className="flex h-[50px] w-[75px] bg-center bg-cover bg-no-repeat bg-[url('img/skyhopper_logo.png')]">
-        </a>
+        <img src={skyHopperLogo} className="flex h-[50px] w-[75px] bg-center bg-cover bg-no-repeat">
+        </img>
         {/* nav links */}
         <div className="flex mt-5 flex-col space-y-1 justify-center items-center">
             <div onClick={(e) => handleClick(e)} id={'Dashboard'} className={active=='Dashboard'?"flex justify-center items-center w-[150px] h-[50px] hover:bg-blue-200 text-blue-400 bg-blue-100 rounded-xl transition-all duration-300 ease-linear ":"flex justify-center items-center w-[150px] h-[50px] hover:bg-blue-100 rounded-xl transition-all duration-300 ease-linear "} >

@@ -44,7 +44,7 @@ function PopularDestinationCard({ places }) {
         <a
           key={index}
           href="#"
-          className={`flex text-lg hover:text-2xl hover:scale-105 transition-all duration-500 justify-center items-end bg-gray-500 bg-blend-overlay hover:bg-blend-normal row-span-${place.rowSpan} col-span-1 rounded-xl bg-center bg-cover bg-no-repeat`}
+          className={`flex shadow-md text-lg hover:text-2xl hover:scale-105 transition-all duration-500 justify-center items-end bg-gray-500 bg-blend-overlay hover:bg-blend-normal row-span-${place.rowSpan} col-span-1 rounded-xl bg-center bg-cover bg-no-repeat`}
           style={{ backgroundImage: `url('${place.imageUrl}')`,gridRow: `span ${place.rowSpan}`, }}
         >
           <div className="px-2 bg-gray-200 bg-opacity-70 mb-2 rounded-lg">{place.city}</div>
