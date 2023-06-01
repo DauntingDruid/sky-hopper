@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteData } from "../store/slices/authSlice";
+import skyHopperLogo from "../assets/img/skyhopper_logo.png";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -22,10 +23,11 @@ const NavBar = () => {
 
   return (
     <div className="relative w-screen flex shadow-lg justify-between bg-white px-10 h-[5vh] z-10">
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center hover:scale-110 transition-all ease-in-out duration-300">
+        <img className="h-8 w-8 mr-2" src={skyHopperLogo} alt="logo" />
         <a
           href="/"
-          className="text-2xl font-bold text-blue-300 hover:scale-110 transition-all ease-in-out duration-300"
+          className="text-2xl font-bold text-blue-700"
         >
           Sky Hopper
         </a>
