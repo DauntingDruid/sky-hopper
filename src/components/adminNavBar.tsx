@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartBar, faClipboardList, faPlane, faUser, faCogs } from '@fortawesome/free-solid-svg-icons';
-import skyHopperLogo from '../assets/img/skyhopper_logo.png';
 
 const AdminNavBar = () => {
     const [active, setActive] = useState('Dashboard');

@@ -1,17 +1,28 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import NavBar from '../components/navBar';
 import AnimatedRoutes from './animatedRoutes';
+import SplashScreen from '../components/splashScreen';
 
 //useLocation hook data: login,
 
 const MainRouter = () => {
+  const [loaded, setLoaded] = useState(true);
+  useEffect(() =>{
+    setTimeout(() =>{
+      setLoaded(false)
+    },2500)
+  },[])
+
   return (
     <Router>
-        <NavBar />
-        <AnimatedRoutes />
+        {loaded?
+          <SplashScreen />
+          :
+          <AnimatedRoutes />
+        }
     </Router>
   )
 }

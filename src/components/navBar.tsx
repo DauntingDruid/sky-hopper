@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteData } from "../store/slices/authSlice";
 import skyHopperLogo from "../assets/img/skyhopper_logo.png";
 
+
 const NavBar = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state: any) => state.auth.userInfo);
@@ -25,12 +26,12 @@ const NavBar = () => {
     <div className="relative w-screen flex shadow-lg justify-between bg-white px-10 h-[5vh] z-10">
       <div className="flex justify-center items-center hover:scale-110 transition-all ease-in-out duration-300">
         <img className="h-8 w-8 mr-2" src={skyHopperLogo} alt="logo" />
-        <a
-          href="/"
+        <Link
+          to={'/'}
           className="text-2xl font-bold text-blue-700"
         >
           Sky Hopper
-        </a>
+        </Link>
       </div>
       <div className="flex space-x-5 ml-10 justify-center items-center">
         {userInfo !== "" ? (
