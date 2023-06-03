@@ -1,28 +1,57 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { useLocation } from 'react-router-dom';
-import HomePage from '../pages/homePage';
-import RegisterationPage from '../pages/registerationPage';
-import AdminDashboardPage from '../pages/adminDashboardPage';
-import BookingPage from '../pages/bookingPage';
-import FlightsPage from '../pages/flightsPage';
-import BookingConfirmationPage from '../pages/bookingConfirmationPage';
 import { Route, Routes } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion'
 import NavBar from '../components/navBar';
+import Loader from '../components/loader';
+
+const Home = lazy(() => import('../pages/homePage'))
+const Search = lazy(() => import('../pages/flightsPage'))
+const Book = lazy(() => import('../pages/bookingPage'))
+const Confirmation = lazy(() => import('../pages/bookingConfirmationPage'))
+const SignUpLogin = lazy(() => import('../pages/registerationPage'))
+const Admin = lazy(() => import('../pages/adminDashboardPage'))
 
 
 const AnimatedRoutes = () => {
+  
+
+
     const location = useLocation();
   return (
     <AnimatePresence>
         <NavBar />
         <Routes location={location} key={location.pathname}>    
-                <Route path='/' Component={HomePage} />
-                <Route path='/search' Component={FlightsPage} />
-                <Route path='/book/:id' Component={BookingPage} />
-                <Route path='/confirmation/:id' Component={BookingConfirmationPage} />
-                <Route path='/signUpLogin' Component={RegisterationPage} />
-                <Route path='/admin' Component={AdminDashboardPage} />
+                <Route path='/' element={
+                  <Suspense fallback={<Loader /> }>
+                    <Home />
+                  </Suspense>
+                  } />
+                  <Route path='/search'  element={
+                  <Suspense fallback={<Loader /> }>
+                    <Search />
+                  </Suspense>
+                  } />
+                  <Route path='/book/:id'  element={
+                  <Suspense fallback={<Loader /> }>
+                    <Book />
+                  </Suspense>
+                  } />
+                  <Route path='/confirmation/:id'  element={
+                  <Suspense fallback={<Loader /> }>
+                    <Confirmation />
+                  </Suspense>
+                  } />
+                  <Route path='/signUpLogin'  element={
+                  <Suspense fallback={<Loader /> }>
+                    <SignUpLogin />
+                  </Suspense>
+                  } />
+                  <Route path='/admin'  element={
+                  <Suspense fallback={<Loader /> }>
+                    <Admin />
+                  </Suspense>
+                  } />
         </Routes>
     </AnimatePresence>
   )

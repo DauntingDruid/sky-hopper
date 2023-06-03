@@ -18,6 +18,7 @@ Sky Hopper is a flight booking website that allows users to search and book flig
 - React-router: For routing between different pages
 - apexcharts: For dynamic charts 
 - firebase: For Login authentication
+- Framer-motion: transition effects between pages.
 
 
 ## Installation

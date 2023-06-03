@@ -13,7 +13,7 @@ const MainRouter = () => {
   useEffect(() =>{
     setTimeout(() =>{
       setLoaded(false)
-    },2500)
+    },2000)
   },[])
 
   return (
