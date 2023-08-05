@@ -16,6 +16,7 @@
     "@headlessui/react": "^1.7.14",
     "@reduxjs/toolkit": "^1.9.5",
     "apexcharts": "^3.40.0",
+    "axios": "^1.4.0",
     "firebase": "^9.22.0",
     "framer-motion": "^10.12.16",
     "lottie-react": "^2.4.0",
