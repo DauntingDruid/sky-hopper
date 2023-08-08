@@ -16,8 +16,8 @@ const SearchBar = () => {
   const [debounceTimeout, setDebounceTimeout] = useState(0);
   const [fromFilteredAirports, setFromFilteredAirports] = useState([]);
   const [toFilteredAirports, setToFilteredAirports] = useState([]);
-  const [fromDate, setFromDate] = useState(new Date());
-  const [toDate, setToDate] = useState(new Date());
+  const [fromDate, setFromDate] = useState();
+  const [toDate, setToDate] = useState();
 
   const debounceSearch = async (input, funct) => {
     if (debounceTimeout !== 0) {
@@ -128,17 +128,17 @@ const SearchBar = () => {
             </Combobox.Options>
           </Combobox>
           {/* departure -> calendar */}
-          <div className="w-[15%] flex justify-center items-center h-full p-4 border-r-2 bg-white border-gray-200">
+          <div className="w-[15%] flex justify-center items-center h-full border-r-2 bg-white border-gray-200">
             <DatePicker
-              className="w-full h-full font-bold"
+              className="p-4 w-full h-16 font-bold"
               selected={fromDate}
               onChange={(date) => setFromDate(date)}
             />
           </div>
           {/* Return -> calendar */}
-          <div className="w-[15%] flex justify-center items-center h-full p-4 border-r-2 bg-white border-gray-200">
+          <div className="w-[15%] flex justify-center items-center h-full border-r-2 bg-white border-gray-200">
             <DatePicker
-              className="w-full h-full font-bold"
+              className="p-4 w-full h-16 font-bold"
               selected={toDate}
               onChange={(date) => setToDate(date)}
             />
